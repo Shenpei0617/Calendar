@@ -77,7 +77,7 @@ const handleNextMonth = () => {
 };
 
   return (
-    <div className='wrap'>
+    <div className='wrap-calendar'>
       <div className="calendar">
         <div className="calendar-header">
           <div className="month-select" onClick={handlePreviousMonth}>‹</div>

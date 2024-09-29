@@ -1,0 +1,99 @@
+//1見 JS/index
+//3見 JS/index
+
+//2-1
+css權重 => !important (無限) > inline style(1000) > ID (100) > Class (10) > Element(1) > * (0)
+.container .shop-list li.item  => 權重 10 + 10 + 1 + 10 = 31
+.container .shop-list .item => 權重 10 + 10 + 10 = 30
+因為 31 > 30，綠色比藍色更有優先權，所以color: blue; 無法覆蓋color: green; 字的顏色仍然會是綠色。
+
+解決方式：
+1.增加藍色的權重,或減少綠色的權重 =>
+.container .shop-list .item {
+color: green;
+}
+.container .shop-list li.item {
+color: blue;
+}
+2.讓藍色和綠色的權重一樣 =>
+.container .shop-list li{
+    color: green;
+}
+.container .shop-list li{
+    color: blue;
+}
+
+//2-2
+增加背景色
+.container .shop-list li:nth-child(odd) {
+color: green;
+background-color: #f9f1c1;
+}
+.container .shop-list li:nth-child(even) {
+color: blue;
+background-color: #f0baf6;
+}
+
+//4
+Interface（介面）:
+用來定義物件的型別，幫助維持代碼的可讀性和可維護性。不會實際實現方法，需要由classes（類別）去實現。
+
+
+範例：
+interface User {
+  firstName: string;
+  lastName: string;
+  customerID: number;
+  note: any;
+  profession: string;
+}
+const person : User = {
+  firstName: "John",
+  lastName: "Doe",
+  customerID: 123,
+  note: 'VIP',
+  profession:'student'
+};
+
+Enum（列舉）：
+用來管理多個相似而不會變動的常數，例如，星期、狀態判斷、方位
+
+範例：
+enum profession {
+    SystemAnalytics,
+    Engineer,
+    ProductOwner,
+    Freelancer,
+    Student,
+}
+
+function getProfession(profession: Profession): string {
+  switch (profession) {
+    case Profession.SystemAnalytics:
+      return "System Analytics";
+    case Profession.Engineer:
+      return "Engineer";
+    case Profession.ProductOwner:
+      return "Product Owner";
+    case Profession.Freelancer:
+      return "Freelancer";
+    case Profession.Student:
+      return "Student";
+    default:
+      return "Unknown Profession";
+  }
+}
+
+//5
+this.setState 是異步的，每次讀取的this.state.count可能還是舊的值，可能導致每次count只會加1不是加3。
+修改：
+每次state會基於最新的值進行計算。
+handleAddCount(){
+  this.setState((prev) => ({ count: prev.count + 1 }));
+  this.setState((prev) => ({ count: prev.count + 1 }));
+  this.setState((prev) => ({ count: prev.count + 1 }));
+}
+
+//6見 JS/search.js
+
+
